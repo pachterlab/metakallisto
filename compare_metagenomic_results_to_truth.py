@@ -17,6 +17,7 @@ import urllib
 import urllib2
 import pylab
 import argparse
+import copy
 
 numpy.set_printoptions(precision=4)
 
@@ -585,7 +586,7 @@ def climb_tree_verbose(taxid,dataset):
 
 def calc_kraken_error(truth,est,rank):
 	normalization_factor = sum(truth.counts)/sum(est.counts) # total counts/counts assigned
-	norm_est = est
+	norm_est = copy.deepcopy(est)
 	norm_est.counts = [c*normalization_factor for c in est.counts]
 	# Sensitivity:
 
